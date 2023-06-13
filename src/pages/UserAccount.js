@@ -7,7 +7,12 @@ function UserAccount() {
   const [userData, setUserData] = useState({});
   const [userRepo, setUserRepo] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-  const token = "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";
+  const token = process.env.REACT_APP_GITHUB_TOKEN;
+
+  // Use the token in your code
+  console.log(token);
+  
+  
   const options = {headers: {
     Authorization: `Bearer ${token}`
   }};
