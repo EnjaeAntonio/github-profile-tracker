@@ -61,7 +61,7 @@ function UserAccount() {
   if(errorMessage){
     return (
     <div className="container h-screen w-screen flex flex-col justify-center items-center space-y-4">
-      <h1>USER NOT FOUND</h1>
+      <h1 className="text-custom-red text-5xl">!!! ERROR 404: USER NOT FOUND !!!</h1>
       <button className="redirect-btn py-1 px-4 rounded-md" onClick={() => navigate('/github-profile-tracker')}>Back to Home Page</button>
     </div>
 
