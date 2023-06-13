@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="container">
       <Routes>
-        <Route exact path="/" element={<SearchPage/>}/>
+        <Route exact path="/github-profile-tracker" element={<SearchPage/>} index/>
         <Route exact path="user/:username" element={<UserAccount/>}/>
       </Routes>
     </div>
