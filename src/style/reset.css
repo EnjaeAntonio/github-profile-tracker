@@ -1,5 +1,7 @@
 @charset "utf-8";
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* ---------------------------------------------------- 
                                                     
 ---------------------------------------------------- */
@@ -44,9 +46,24 @@ html {
 }
 
 body {
-  background: var(--app-dark-bg);
+  background:
+  conic-gradient(from 0deg at calc(500%/6) calc(100%/3),#666 0 120deg,#0000 0),
+  conic-gradient(from -120deg at calc(100%/6) calc(100%/3),#cf0030 0 120deg,#0000 0),
+  conic-gradient(from 120deg at calc(100%/3) calc(500%/6),#000000 0 120deg,#0000 0),
+  conic-gradient(from 120deg at calc(200%/3) calc(500%/6),#000000 0 120deg,#0000 0),
+  conic-gradient(from -180deg at calc(100%/3) 50%,#cf0030  60deg,#000000 0 120deg,#0000 0),
+  conic-gradient(from 60deg at calc(200%/3) 50%,#000000  60deg,#666 0 120deg,#0000 0),
+  conic-gradient(from -60deg at 50% calc(100%/3),#000000 120deg,#cf0030 0 240deg,#666 0);
+  background-size: 111px 64px;
+
   height: 100%;
 }
+
+.shadow {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
 
 ul, ol {
   list-style: none;

@@ -14,8 +14,8 @@ const navigate = useNavigate();
     };    
 
   return (
-    <div className="container">
-        <form onSubmit={handleSubmit}>
+    <div className="container h-screen w-screen flex justify-center items-center">
+        <form onSubmit={handleSubmit} className="flex gap-2">
         <input 
         type="search"
         placeholder="Search..."
@@ -25,6 +25,7 @@ const navigate = useNavigate();
         />
         <input 
         type="submit"
+        className=""
         />
       </form>
     </div>

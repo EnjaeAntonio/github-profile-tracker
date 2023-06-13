@@ -18,9 +18,10 @@ function UserAccount() {
     axios.get(`https://api.github.com/users/${username}`, options)
     .then((response) => {
       setUserData(response.data);
+      console.log(response.data)
       setTimeout(() => {
         setIsLoading(false);
-      }, 2000);
+      });
     })
     .catch((error) => {
       setErrorMessage(error.message);
@@ -30,9 +31,10 @@ function UserAccount() {
     axios.get(`https://api.github.com/users/${username}/repos`, options)
     .then((response) => {
       setUserRepo(response.data);
+      console.log(response.data)
       setTimeout(() => {
         setIsLoading(false);
-      }, 2000);
+      });
     })
     .catch((error) => {
       setErrorMessage(error.message);
@@ -40,31 +42,53 @@ function UserAccount() {
     });
   }, [username]);
 
-  if(isLoading) {
-    return <div>Loading...</div>
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="loader"></div>
+      </div>
+    );
   }
+  
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return date.toLocaleDateString(undefined, options);
+  };
+
 
   return (
     <section>
-        <img src={userData.avatar_url} alt="User avatar"/>
+      <div className="grid py-4 justify-center items-center text-center">
+        <img className="mx-auto" src={userData.avatar_url} alt="User avatar" />
+        <h1 className="">{userData.name}</h1>
         <button><a href={userData.html_url}>Profile</a></button>
-        <h1>{userData.name}</h1>
-        <div>
-          <p>{userData.followers}</p>
-          <p>{userData.following}</p>
+        <div className="flex justify-between">
+          <div>
+            <p>{userData.followers} <span>Followers</span></p>
+          </div>
+          <p>{userData.following} <span>Following</span></p>
         </div>
-        <div>
-        <p>Number of repos: {userData.public_repos}</p>
-            {userRepo.map((repo, index)=> {
-              return (
-                <div key={index}>
-                <h2>{repo.name}</h2>
-                <p>{repo.description}</p>
-              </div>
-              )
-            })}
-        </div>
-      </section>
+      </div>
+
+      <div>
+      <p>Number of repos: {userData.public_repos}</p>
+          {userRepo.map((repo, index)=> {
+            return (
+              <div key={index} className="repo-container">
+              <h2 className="repo-name">
+                <a 
+                href={repo.html_url} target="_blank" 
+                rel="noopener noreferrer"
+                >{repo.name}</a>
+                </h2>
+              <p className="repo-desc">{repo.description}</p>
+              <p className="created">Created: {formatDate(repo.created_at)}</p>
+            </div>
+            )
+          })}
+      </div>
+    </section>
   )
 }
 
