@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function UserAccount() {
   const { username } = useParams();
   const [userData, setUserData] = useState({});
   const [userRepo, setUserRepo] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   const token = process.env.REACT_APP_GITHUB_TOKEN;
   
   const options = {headers: {
@@ -18,27 +20,33 @@ function UserAccount() {
     axios.get(`https://api.github.com/users/${username}`, options)
     .then((response) => {
       setUserData(response.data);
-      console.log(response.data)
       setTimeout(() => {
         setIsLoading(false);
-      });
+      }, 2000); 
     })
     .catch((error) => {
-      setErrorMessage(error.message);
-      setIsLoading(false)
+      setTimeout(()=>{
+        if(error.response && error.response.status === 404){
+          setErrorMessage('User Not Found');
+        }else {
+          setErrorMessage(error.message)
+        }
+        setIsLoading(false)
+      },2000 )
     });
 
     axios.get(`https://api.github.com/users/${username}/repos`, options)
     .then((response) => {
       setUserRepo(response.data);
-      console.log(response.data)
       setTimeout(() => {
         setIsLoading(false);
-      });
+      }, 2000);
     })
     .catch((error) => {
-      setErrorMessage(error.message);
-      setIsLoading(false);
+      setTimeout(()=>{
+        setErrorMessage(error.message);
+        setIsLoading(false);
+      },2000 )
     });
   }, [username]);
 
@@ -50,6 +58,16 @@ function UserAccount() {
     );
   }
   
+  if(errorMessage){
+    return (
+    <div className="container h-screen w-screen flex flex-col justify-center items-center space-y-4">
+      <h1>USER NOT FOUND</h1>
+      <button className="redirect-btn py-1 px-4 rounded-md" onClick={() => navigate('/github-profile-tracker')}>Back to Home Page</button>
+    </div>
+
+    )
+  }
+  
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -58,11 +76,11 @@ function UserAccount() {
 
 
   return (
-    <section>
+    <section className="animated">
       <div className="grid py-4 justify-center items-center text-center">
         <img className="mx-auto" src={userData.avatar_url} alt="User avatar" />
         <h1 className="">{userData.name}</h1>
-        <button><a href={userData.html_url}>Profile</a></button>
+        <button className="profile-link"><a href={userData.html_url}>Profile</a></button>
         <div className="flex justify-between">
           <div>
             <p>{userData.followers} <span>Followers</span></p>
