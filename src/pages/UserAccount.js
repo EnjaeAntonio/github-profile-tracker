@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function UserAccount() {
-  const [user, setUser] = useState('');
+  const { username } = useParams();
   const [userData, setUserData] = useState({});
   const [userRepo, setUserRepo] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-  const token = "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";
+  const token = "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";
   const options = {headers: {
     Authorization: `Bearer ${token}`
   }};
-  
+
   useEffect(() => {
-    axios.get(`https://api.github.com/users/${user}`, options)
+    axios.get(`https://api.github.com/users/${username}`, options)
     .then((response) => {
       setUserData(response.data)
     })
@@ -20,14 +21,14 @@ function UserAccount() {
       setErrorMessage(error.message);
     });
 
-    axios.get(`https://api.github.com/users/${user}/repos`, options)
+    axios.get(`https://api.github.com/users/${username}/repos`, options)
     .then((response) => {
       setUserRepo(response.data)
     })
     .catch((error) => {
       setErrorMessage(error.message);
     });
-  }, [user]);
+  }, [username]);
 
   return (
     <section>
