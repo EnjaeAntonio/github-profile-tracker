@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
+import './style/style.css';
+import { BrowserRouter as Route, useParams } from "react-router-dom";
+import UserAccount from "./pages/UserAccount";
 function App() {
+  const { user } = useParams();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const user = event.target.user.value.trim();
+    setUser(user);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <form onSubmit={handleSubmit}>
+        <input 
+        type="search"
+        placeholder="Search..."
+        name="user"
+        />
+        <input 
+        type="submit"
+        />
+      </form>
+      <Route exact path="user/:username" component={UserAccount}/>
     </div>
   );
 }
