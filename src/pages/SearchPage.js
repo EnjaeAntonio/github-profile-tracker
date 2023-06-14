@@ -16,24 +16,20 @@ const navigate = useNavigate();
     };    
 
   return (
-    <div className="container h-screen w-screen grid justify-center items-center">
-        <form onSubmit={handleSubmit} className="grid">
-        <h1 className="text-6xl">GitHub Profile Finder!</h1>
-        <p className="text-xs mt-5"><span>Search for a user</span></p>
-        <div className="flex gap-4 mb-5">
+    <div className="search-form container h-screen w-screen grid justify-center items-center">
+        <form onSubmit={handleSubmit} className="grid"
+        autoComplete="off"
+        >
+        <h1 className="text-6xl text-center">GitHub</h1>
+        <div className="flex gap-4 mb-5 mt-3 justify-center items-center">
           <input 
           type="search"
-          placeholder="Search..."
+          placeholder="Search for user"
           name="user"
           onChange={handleChange}
           value={userName}
           />
-          <input 
-          type="submit"
-          className=""
-          />
         </div>
-
       </form>
     </div>
   )

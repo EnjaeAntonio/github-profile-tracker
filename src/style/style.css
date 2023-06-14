@@ -1,14 +1,19 @@
 @import url(./reset.css);
 
+form h1 {
+  letter-spacing: 2px;
+}
+
 input[type="search"] {
   color: rgb(255, 255, 255);
   font-size: 14px;
   font-weight: 400;
-  padding: 6px;
-  width: 100%;
+  padding: 8px;
+  width: 500px;
   transition: all .5s ease-in-out;
   background-color: rgb(53, 53, 53);
-  border-radius: 6px;
+  border-radius: 50px;
+  border: 1px solid #acacac;
 }
 
 input[type="search"]:hover {
@@ -52,7 +57,16 @@ h1, h2 {
   font-size: 2rem;
 }
 
-span, .created{
+.user-info {
+  font-size: 15px;
+}
+
+span, .repo-name{
+  color: var(--app-green);
+  font-weight: 600;
+}
+
+.created{
   color: #999999;
 }
 
@@ -68,9 +82,20 @@ button{
 
 .profile-link{
   margin: 6px 0;
+  padding: 8px;
   background-color: var(--app-orange);
+  width: 50%;
+  border-radius: 50px;
 }
 
+.profile-card{
+  background-color: rgb(26, 29, 40, .75);
+  padding: 22px;
+}
+
+.repo-name:hover{
+  text-decoration: underline var(--app-green);
+}
 .redirect-btn{
   background-color: var(--app-red);
 }
@@ -82,7 +107,6 @@ button{
 }
 
 .repo-name {
-  color: var(--app-red);
   padding: 4px 0;
 }
 
@@ -106,7 +130,7 @@ button{
   border-radius: 50%;
   border: 3px solid transparent;
   border-top-color: var(--app-red);
-  -webkit-animation: spin 2s linear infinite; /* Chrome, Safari, Opera */
+  -webkit-animation: spin 2s linear infinite; 
   animation: spin 2s linear infinite;
 }
 
@@ -120,7 +144,7 @@ button{
   border-radius: 50%;
   border: 3px solid transparent;
   border-top-color: var(--app-red);
-  -webkit-animation: spin 3s linear infinite; /* Chrome, Safari, Opera */
+  -webkit-animation: spin 3s linear infinite; 
   animation: spin 3s linear infinite;
 }
 
@@ -134,7 +158,7 @@ button{
   border-radius: 50%;
   border: 3px solid transparent;
   border-top-color: var(--app-red);
-  -webkit-animation: spin 1.5s linear infinite; /* Chrome, Safari, Opera */
+  -webkit-animation: spin 1.5s linear infinite; 
   animation: spin 1.5s linear infinite;
 }
 

@@ -38,6 +38,7 @@ function UserAccount() {
     axios.get(`https://api.github.com/users/${username}/repos`, options)
     .then((response) => {
       setUserRepo(response.data);
+      console.log(response.data)
       setTimeout(() => {
         setIsLoading(false);
       }, 2000);
@@ -78,19 +79,22 @@ function UserAccount() {
   return (
     <section className="animated">
       <div className="grid py-4 justify-center items-center text-center">
-        <img className="mx-auto" src={userData.avatar_url} alt="User avatar" />
-        <h1 className="">{userData.name}</h1>
-        <button className="profile-link"><a href={userData.html_url}>Profile</a></button>
-        <div className="flex justify-between">
-          <div>
-            <p>{userData.followers} <span>Followers</span></p>
+          <div className="profile-card grid gap-3">
+          <img className="mx-auto" src={userData.avatar_url} alt="User avatar" />
+          <h1 className="">{userData.name}</h1>
+          <div className="grid place-items-center">
+            <button className="profile-link"><a href={userData.html_url}>Go to Github</a></button>
           </div>
-          <p>{userData.following} <span>Following</span></p>
+          <div className="user-info flex justify-between gap-6">
+            <p className="grid"><span>{userData.followers}</span> FOLLOWERS</p>
+            <p className="grid"><span>{userData.following}</span> FOLLOWING</p>
+            <p className="grid"><span>{userData.public_repos}</span> REPOSITORIES</p>
+          </div>
         </div>
+
       </div>
 
       <div>
-      <p>Number of repos: {userData.public_repos}</p>
           {userRepo.map((repo, index)=> {
             return (
               <div key={index} className="repo-container">
