@@ -9,15 +9,10 @@ function UserAccount() {
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const token = process.env.REACT_APP_GITHUB_TOKEN;
-  
-  const options = {headers: {
-    Authorization: `Bearer ${token}`
-  }};
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`https://api.github.com/users/${username}`, options)
+    axios.get(`https://api.github.com/users/${username}`)
     .then((response) => {
       setUserData(response.data);
       setTimeout(() => {
@@ -35,7 +30,7 @@ function UserAccount() {
       },2000 )
     });
 
-    axios.get(`https://api.github.com/users/${username}/repos`, options)
+    axios.get(`https://api.github.com/users/${username}/repos`)
     .then((response) => {
       setUserRepo(response.data);
       console.log(response.data)
