@@ -17,9 +17,7 @@ const navigate = useNavigate();
 
   return (
     <div className="search-form container h-screen w-screen grid justify-center items-center">
-        <form onSubmit={handleSubmit} className="grid"
-        autoComplete="off"
-        >
+        <form onSubmit={handleSubmit} className="grid" autoComplete="off">
         <h1 className="text-6xl text-center">GitHub</h1>
         <div className="flex gap-4 mb-5 mt-3 justify-center items-center">
           <input 

@@ -12,28 +12,30 @@ function UserAccount() {
 
   useEffect(() => {
     setIsLoading(true);
-    Promise.all([
-      axios.get(`https://api.github.com/users/${username}`),
-      axios.get(`https://api.github.com/users/${username}/repos`)
-    ])
-    .then(([userResponse, reposResponse]) => { 
-      setUserData(userResponse.data);
-      setUserRepo(reposResponse.data);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000); 
-    })
-    .catch((error) => {
-      setTimeout(()=>{
-        if(error.response && error.response.status === 404){
+  
+    const fetchData = async () => {
+      try {
+        const [userResponse, reposResponse] = await Promise.all([
+          axios.get(`https://api.github.com/users/${username}`),
+          axios.get(`https://api.github.com/users/${username}/repos`)
+        ]);
+        setUserData(userResponse.data);
+        setUserRepo(reposResponse.data);
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
           setErrorMessage('User Not Found');
-        }else {
-          setErrorMessage(error.message)
+        } else {
+          setErrorMessage('Something went wrong. Please try again later.');
         }
-        setIsLoading(false)
-      }, 2000)
-    })
+      } finally {
+        setIsLoading(false);
+      }
+    };
+  
+    fetchData();
   }, [username]);
+  
+
 
   if (isLoading) {
     return (

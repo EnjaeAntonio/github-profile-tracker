@@ -41,16 +41,6 @@ input[type="submit"]:hover {
   animation: fadeInMoveIn .8s ease-out forwards;
 }
 
-@keyframes fadeInMoveIn {
-  0% {
-    opacity: 0;
-    transform: translatey(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translatey(0);
-  }
-}
 
 h1, h2 {
   color: #fff;
@@ -169,5 +159,16 @@ button{
   }
   100% { 
     transform: rotate(360deg); 
+  }
+}
+
+@keyframes fadeInMoveIn {
+  0% {
+    opacity: 0;
+    transform: translatey(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translatey(0);
   }
 }
