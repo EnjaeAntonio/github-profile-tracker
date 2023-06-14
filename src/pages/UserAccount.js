@@ -73,7 +73,7 @@ function UserAccount() {
             <img className="mx-auto" src={userData.avatar_url} alt="User avatar" />
             <h1 className="">{userData.name}</h1>
             <div className="grid place-items-center mb-5">
-              <button className="profile-link"><a href={userData.html_url}>Go to Github</a></button>
+              <button className="profile-link"><a target="_blank" href={userData.html_url}>Go to Github</a></button>
             </div>
             <div className="user-info flex justify-between gap-6">
               <p className="grid"><span>{userData.followers}</span> FOLLOWERS</p>
