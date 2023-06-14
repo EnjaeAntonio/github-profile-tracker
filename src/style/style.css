@@ -47,7 +47,12 @@ h1, h2 {
   font-size: 2rem;
 }
 
-.user-info {
+.user-info p {
+  font-size: 12px;
+  color: #999999;
+}
+
+.user-info span {
   font-size: 15px;
 }
 
@@ -88,9 +93,8 @@ button{
 
 .profile-card{
   background-color: rgb(26, 29, 40, .75);
-  padding: 30px 18px;
   border-radius: 20px; 
-  margin: 30px 0;
+  margin: 30px;
 }
 
 .repo-name:hover{

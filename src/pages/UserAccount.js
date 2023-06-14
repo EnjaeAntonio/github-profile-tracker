@@ -67,9 +67,9 @@ function UserAccount() {
 
 
   return (
-    <section className="animated">
+    <section className="container animated">
       <div className="grid py-4 justify-center items-center text-center">
-          <div className="profile-card grid gap-2 py-5">
+          <div className="profile-card grid gap-2 py-5 px-5">
             <img className="mx-auto" src={userData.avatar_url} alt="User avatar" />
             <h1 className="">{userData.name}</h1>
             <div className="grid place-items-center mb-5">
