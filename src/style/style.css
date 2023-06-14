@@ -91,6 +91,7 @@ button{
 .profile-card{
   background-color: rgb(26, 29, 40, .75);
   padding: 22px;
+  border-radius: 20px;
 }
 
 .repo-name:hover{
