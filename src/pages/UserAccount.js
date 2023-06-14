@@ -12,9 +12,13 @@ function UserAccount() {
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`https://api.github.com/users/${username}`)
-    .then((response) => {
-      setUserData(response.data);
+    Promise.all([
+      axios.get(`https://api.github.com/users/${username}`),
+      axios.get(`https://api.github.com/users/${username}/repos`)
+    ])
+    .then(([userResponse, reposResponse]) => { 
+      setUserData(userResponse.data);
+      setUserRepo(reposResponse.data);
       setTimeout(() => {
         setIsLoading(false);
       }, 2000); 
@@ -27,23 +31,8 @@ function UserAccount() {
           setErrorMessage(error.message)
         }
         setIsLoading(false)
-      },2000 )
-    });
-
-    axios.get(`https://api.github.com/users/${username}/repos`)
-    .then((response) => {
-      setUserRepo(response.data);
-      console.log(response.data)
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
+      }, 2000)
     })
-    .catch((error) => {
-      setTimeout(()=>{
-        setErrorMessage(error.message);
-        setIsLoading(false);
-      },2000 )
-    });
   }, [username]);
 
   if (isLoading) {
@@ -60,7 +49,6 @@ function UserAccount() {
       <h1 className="text-custom-red text-5xl">!!! ERROR 404: USER NOT FOUND !!!</h1>
       <button className="redirect-btn py-1 px-4 rounded-md" onClick={() => navigate('/github-profile-tracker')}>Back to Home Page</button>
     </div>
-
     )
   }
   
