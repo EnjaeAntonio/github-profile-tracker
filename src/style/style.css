@@ -8,7 +8,7 @@ input[type="search"] {
   color: rgb(255, 255, 255);
   font-size: 14px;
   font-weight: 400;
-  padding: 8px;
+  padding: 10px 18px;
   width: 500px;
   transition: all .5s ease-in-out;
   background-color: rgb(53, 53, 53);
@@ -73,15 +73,25 @@ button{
 .profile-link{
   margin: 6px 0;
   padding: 8px;
-  background-color: var(--app-red);
+  background-color: rgb(255, 61, 87, .1);
+  border: 2px solid var(--app-red);
   width: 50%;
   border-radius: 50px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  color: var(--app-red);
+  font-weight: 600;
 }
+
+.profile-link:hover{
+  transform: scale(1.05);
+}
+
 
 .profile-card{
   background-color: rgb(26, 29, 40, .75);
-  padding: 22px;
+  padding: 30px 18px;
   border-radius: 20px;
+  margin: 30px 0;
 }
 
 .repo-name:hover{
