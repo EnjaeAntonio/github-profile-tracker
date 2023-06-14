@@ -21,19 +21,24 @@ function UserAccount() {
         ]);
         setUserData(userResponse.data);
         setUserRepo(reposResponse.data);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000);
       } catch (error) {
-        if (error.response && error.response.status === 404) {
-          setErrorMessage('User Not Found');
-        } else {
-          setErrorMessage('Something went wrong. Please try again later.');
-        }
-      } finally {
-        setIsLoading(false);
+        setTimeout(() => {
+          if (error.response && error.response.status === 404){
+            setErrorMessage('User Not Found');
+          }else {
+            setErrorMessage(error.message);
+          }
+          setIsLoading(false);
+        }, 2000);
       }
     };
   
     fetchData();
   }, [username]);
+  
   
 
 
