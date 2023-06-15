@@ -38,9 +38,6 @@ function UserAccount() {
   
     fetchData();
   }, [username]);
-  
-  
-
 
   if (isLoading) {
     return (
@@ -53,7 +50,7 @@ function UserAccount() {
   if(errorMessage){
     return (
     <div className="container h-screen w-screen flex flex-col justify-center items-center space-y-4">
-      <h1 className="text-custom-red text-5xl">!!! ERROR 404: USER NOT FOUND !!!</h1>
+      <h1 className="text-custom-red text-3xl text-center">USER NOT FOUND </h1>
       <button className="redirect-btn py-1 px-4 rounded-md bg-custom-red" onClick={() => {
             setIsLoading(true);
             setTimeout(() => navigate('/github-profile-tracker'), 2000)
