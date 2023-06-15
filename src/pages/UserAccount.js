@@ -54,7 +54,11 @@ function UserAccount() {
     return (
     <div className="container h-screen w-screen flex flex-col justify-center items-center space-y-4">
       <h1 className="text-custom-red text-5xl">!!! ERROR 404: USER NOT FOUND !!!</h1>
-      <button className="redirect-btn py-1 px-4 rounded-md" onClick={() => navigate('/github-profile-tracker')}>Back to Home Page</button>
+      <button className="redirect-btn py-1 px-4 rounded-md bg-custom-red" onClick={() => {
+            setIsLoading(true);
+            setTimeout(() => navigate('/github-profile-tracker'), 2000)
+          }
+          }>Back to Home Page</button>
     </div>
     )
   }
@@ -68,8 +72,8 @@ function UserAccount() {
 
   return (
     <section className="container animated">
-      <div className="grid py-4 justify-center items-center text-center">
-          <div className="profile-card grid gap-2 py-5 px-5">
+      <div className="grid justify-center py-4">
+          <div className="profile-card grid gap-2 py-5 px-5 text-center">
             <img className="mx-auto" src={userData.avatar_url} alt="User avatar" />
             <h1 className="">{userData.name}</h1>
             <div className="grid place-items-center mb-5">
@@ -98,6 +102,19 @@ function UserAccount() {
             )
           })}
       </div>
+      <div className="flex justify-end">
+        <button 
+          className=" home-btn rounded-md bg-custom-blue px-4 py-1 my-3 " 
+          onClick={() => {
+            setIsLoading(true);
+            setTimeout(() => navigate('/github-profile-tracker'), 2000)
+          }
+          }
+        >
+          Back to Home
+        </button>
+      </div>
+
     </section>
   )
 }
