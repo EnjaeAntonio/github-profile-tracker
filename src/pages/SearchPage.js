@@ -22,7 +22,7 @@ const navigate = useNavigate();
         <div className="input-container flex gap-4 mb-3 mt-3 justify-center items-center">
           <input 
           type="search"
-          placeholder="Search for user"
+          placeholder="Search for a user"
           name="user"
           onChange={handleChange}
           value={userName}
