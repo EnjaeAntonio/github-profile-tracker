@@ -19,7 +19,7 @@ const navigate = useNavigate();
     <div className="search-form container h-screen w-screen grid justify-center items-center">
         <form onSubmit={handleSubmit} className="grid" autoComplete="off">
         <h1 className="text-6xl text-center">GitHub Stats</h1>
-        <div className="input-container flex gap-4 mb-5 mt-3 justify-center items-center">
+        <div className="input-container flex gap-4 mb-3 mt-3 justify-center items-center">
           <input 
           type="search"
           placeholder="Search for user"
@@ -28,6 +28,11 @@ const navigate = useNavigate();
           value={userName}
           />
         </div>
+        <div>
+            <p className="text-center text-xs text-gray-500">Search for a user and checkout their stats!</p>
+            <p className="text-center text-xs text-gray-500">Created by Enjae Antonio</p>
+        </div>
+
       </form>
     </div>
   )
